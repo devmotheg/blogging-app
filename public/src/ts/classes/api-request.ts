@@ -38,7 +38,7 @@ export default class APIRequest {
       const res = await axios({
         url,
         method,
-        baseURL: "http://127.0.0.1:3000/api/v1/",
+        baseURL: "/api/v1/",
         data: this.data,
       });
 

@@ -24,7 +24,14 @@ const server = app.listen(PORT, () => {
 });
 
 process.on("unhandledRejection", (reason, promise) => {
-  console.error(`Unhandled rejection: ${promise}\n${reason.stack}\nReason: ${reason}`);
+  console.error(
+    `Unhandled rejection: ${promise}\n${reason.stack}\nReason: ${reason}`
+  );
   console.log("Shutting down...");
+  server.close(err => process.exit(1));
+});
+
+process.on("SIGTERM", signal => {
+  console.log("SIGTERM recieved... Shutting down gracefully!");
   server.close(err => process.exit(1));
 });
