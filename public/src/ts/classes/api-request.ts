@@ -48,7 +48,8 @@ export default class APIRequest {
       return res;
     } catch (err: any) {
       console.error(err);
-      if (err.response) new Alert("error", err.response.data.message);
+      if (err.response && typeof err.response.data.message === "string")
+        new Alert("error", err.response.data.message);
       else new Alert("error", "Something went wrong, try again later");
     } finally {
       this.up();
@@ -88,19 +89,19 @@ export default class APIRequest {
   }
 
   async userPosts(username: string) {
-    return await this.send(`users/${username}/posts`, "GET")
+    return await this.send(`users/${username}/posts`, "GET");
   }
 
   async userFavorites(username: string) {
-    return await this.send(`users/${username}/favorites`, "GET")
+    return await this.send(`users/${username}/favorites`, "GET");
   }
 
   async userBookmarks(username: string) {
-    return await this.send(`users/${username}/bookmarks`, "GET")
+    return await this.send(`users/${username}/bookmarks`, "GET");
   }
 
   async userComments(username: string) {
-    return await this.send(`users/${username}/comments`, "GET")
+    return await this.send(`users/${username}/comments`, "GET");
   }
 
   async createMyPost() {

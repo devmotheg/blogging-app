@@ -2315,7 +2315,7 @@ var APIRequest = /** @class */ (function () {
                     case 2:
                         err_1 = _a.sent();
                         console.error(err_1);
-                        if (err_1.response)
+                        if (err_1.response && typeof err_1.response.data.message === "string")
                             new _alert__WEBPACK_IMPORTED_MODULE_1__["default"]("error", err_1.response.data.message);
                         else
                             new _alert__WEBPACK_IMPORTED_MODULE_1__["default"]("error", "Something went wrong, try again later");
