@@ -10,19 +10,30 @@ const authController = require("../controllers/auth-controller"),
 
 const router = express.Router({ mergeParams: true });
 
-router.use(authController.fireWall({ protect: true }));
-
 router
   .route("/my-bookmark")
-  .post(bookmarkController.createMyBookmark)
-  .delete(bookmarkController.deleteMyBookmark);
+  .post(
+    authController.fireWall({ protect: true }),
+    bookmarkController.createMyBookmark
+  )
+  .delete(
+    authController.fireWall({ protect: true }),
+    bookmarkController.deleteMyBookmark
+  );
 
 router
   .route("/")
   .get(helperMiddlewares.passQueryFilter, bookmarkController.readAllBookmarks)
-  .post(authController.restrictTo("admin"), bookmarkController.createBookmark);
+  .post(
+    authController.fireWall({ protect: true }),
+    authController.restrictTo("admin"),
+    bookmarkController.createBookmark
+  );
 
-router.use(authController.restrictTo("admin"));
+router.use(
+  authController.fireWall({ protect: true }),
+  authController.restrictTo("admin")
+);
 
 router
   .route("/:id")

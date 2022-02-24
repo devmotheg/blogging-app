@@ -17,20 +17,31 @@ router.use("/:postId/favorites", favoriteRouter);
 router.use("/:postId/bookmarks", bookmarkRouter);
 router.use("/:postId/comments", commentRouter);
 
-router.use(authController.fireWall({ protect: true }));
-
 router
   .route("/my-post")
-  .post(postController.createMyPost)
-  .patch(postController.updateMyPost)
-  .delete(postController.deleteMyPost);
+  .post(authController.fireWall({ protect: true }), postController.createMyPost)
+  .patch(
+    authController.fireWall({ protect: true }),
+    postController.updateMyPost
+  )
+  .delete(
+    authController.fireWall({ protect: true }),
+    postController.deleteMyPost
+  );
 
 router
   .route("/")
   .get(helperMiddlewares.passQueryFilter, postController.readAllPosts)
-  .post(authController.restrictTo("admin"), postController.createPost);
+  .post(
+    authController.fireWall({ protect: true }),
+    authController.restrictTo("admin"),
+    postController.createPost
+  );
 
-router.use(authController.restrictTo("admin"));
+router.use(
+  authController.fireWall({ protect: true }),
+  authController.restrictTo("admin")
+);
 
 router
   .route("/:id")

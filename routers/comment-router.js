@@ -10,20 +10,34 @@ const authController = require("../controllers/auth-controller"),
 
 const router = express.Router({ mergeParams: true });
 
-router.use(authController.fireWall({ protect: true }));
-
 router
   .route("/my-comment")
-  .post(commentController.createMyComment)
-  .patch(commentController.updateMyComment)
-  .delete(commentController.deleteMyComment);
+  .post(
+    authController.fireWall({ protect: true }),
+    commentController.createMyComment
+  )
+  .patch(
+    authController.fireWall({ protect: true }),
+    commentController.updateMyComment
+  )
+  .delete(
+    authController.fireWall({ protect: true }),
+    commentController.deleteMyComment
+  );
 
 router
   .route("/")
   .get(helperMiddlewares.passQueryFilter, commentController.readAllComments)
-  .post(authController.restrictTo("admin"), commentController.createComment);
+  .post(
+    authController.fireWall({ protect: true }),
+    authController.restrictTo("admin"),
+    commentController.createComment
+  );
 
-router.use(authController.restrictTo("admin"));
+router.use(
+  authController.fireWall({ protect: true }),
+  authController.restrictTo("admin")
+);
 
 router
   .route("/:id")

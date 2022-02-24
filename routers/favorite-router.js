@@ -10,19 +10,30 @@ const authController = require("../controllers/auth-controller"),
 
 const router = express.Router({ mergeParams: true });
 
-router.use(authController.fireWall({ protect: true }));
-
 router
 	.route("/my-favorite")
-	.post(favoriteController.createMyFavorite)
-	.delete(favoriteController.deleteMyFavorite);
+	.post(
+		authController.fireWall({ protect: true }),
+		favoriteController.createMyFavorite
+	)
+	.delete(
+		authController.fireWall({ protect: true }),
+		favoriteController.deleteMyFavorite
+	);
 
 router
 	.route("/")
 	.get(helperMiddlewares.passQueryFilter, favoriteController.readAllFavorites)
-	.post(authController.restrictTo("admin"), favoriteController.createFavorite);
+	.post(
+		authController.fireWall({ protect: true }),
+		authController.restrictTo("admin"),
+		favoriteController.createFavorite
+	);
 
-router.use(authController.restrictTo("admin"));
+router.use(
+	authController.fireWall({ protect: true }),
+	authController.restrictTo("admin")
+);
 
 router
 	.route("/:id")
