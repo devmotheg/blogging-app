@@ -1,5 +1,7 @@
 # Blogging App
 
+Almost a dev.to mockup :P
+
 ## Table of contents
 
 - [Features](#features)
