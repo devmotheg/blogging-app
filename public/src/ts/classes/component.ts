@@ -167,7 +167,7 @@ export default class Component {
           </a>
           `
         : `
-          <button class="comment__modifiy">
+          <button class="comment__modify">
             <svg>
               <use xlink:href="/img/icons.svg#icon-edit-2"></use>
             </svg>
