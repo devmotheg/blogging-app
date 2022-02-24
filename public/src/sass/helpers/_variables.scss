@@ -1,0 +1,30 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+$media-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1400px,
+);
+
+$black: black;
+$soft-black: #242424;
+$white: white;
+$soft-white: rgb(245, 245, 245);
+$grey: #575757;
+$yellow: rgb(252, 211, 77);
+$red: rgb(220, 38, 38);
+$green: rgb(5, 150, 105);
+$blue: rgb(59, 73, 223);
+$font-sans: Arial, Helvetica, sans-serif;
+$transition: 0.3s all ease;
+
+$border-radius: 0.25rem;
+$aside-width: 12rem;
+$icon-dimensions: 1.5rem;
+$icon-padding: 0.2rem;
+$icon-gap: 0.2rem;

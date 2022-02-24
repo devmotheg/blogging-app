@@ -1,0 +1,50 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+@use "../helpers/variables" as *;
+
+.alert {
+	z-index: 4;
+	font-size: 0.9rem;
+	position: absolute;
+	left: -50%;
+	opacity: 0;
+	transition: 0.2s;
+
+	&__body {
+		max-width: 32rem;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		position: fixed;
+		background: $white;
+		padding: 1rem;
+		border-radius: $border-radius;
+		box-shadow: 0 0 0.6rem 0.1rem rgba($black, 20%);
+
+		&--success {
+			border-left: 0.4rem solid $green;
+		}
+
+		&--error {
+			border-left: 0.4rem solid $red;
+		}
+
+		p {
+			font-weight: bold;
+			word-break: break-word;
+		}
+	}
+
+	&__btn {
+		text-transform: capitalize;
+		color: $blue;
+		font-weight: bold;
+	}
+
+	&--display {
+		opacity: 1;
+		left: 20px;
+	}
+}

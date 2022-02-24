@@ -1,0 +1,25 @@
+//-!
+  @author Mohamed Muntasir
+  @link https://github.com/devmotheg
+
+extends ../index
+
+mixin settings-link(path, icon)
+  li: a(href=`/settings/${path}` class=`settings-page__link ${path === active ? "settings-page__link--active" : ""}`)
+    svg: use(xlink:href=`/img/icons.svg#icon-${icon}`)
+    span=path
+
+block content
+  .container
+    .settings-page
+      header.settings-page__header
+        | Settings for
+        a(href=`/${user.username}`)  @#{user.username}
+
+      aside.settings-page__aside
+        ul
+          +settings-link("profile", "edit")
+          +settings-link("security", "lock")
+
+      main.settings-page__body
+        block body

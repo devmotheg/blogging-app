@@ -1,0 +1,121 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+@use "../helpers/placeholders" as *;
+
+.overview-page {
+	&__header {
+		@extend %bordered-box;
+		border-top: 0.4rem solid $blue;
+		padding: 2rem;
+		background: $white;
+		margin-bottom: 2rem;
+	}
+
+	&__hashtag {
+		font-size: 2rem;
+
+		span {
+			color: $grey;
+		}
+	}
+
+	&__content {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		gap: 1rem;
+
+		.aside-left {
+			width: $aside-width;
+			display: none;
+			@include respond-to(lg) {
+				& {
+					display: block;
+				}
+			}
+		}
+
+		.main {
+			@extend %blog-post;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+
+			&__btns {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+			}
+
+			&__btn {
+				transition: $transition;
+				text-transform: capitalize;
+				padding: 0.5rem 1rem;
+				border-radius: $border-radius;
+
+				&:disabled {
+					background-color: $grey;
+					color: $white;
+				}
+
+				&--active {
+					font-weight: bold;
+				}
+
+				&:not(:disabled):hover {
+					@include btn-effect($blue, $white, null, null);
+				}
+			}
+		}
+
+		.aside-right {
+			width: $aside-width;
+
+			&__hashtags {
+				padding: 0.2rem;
+
+				strong {
+					display: flex;
+					align-items: center;
+					gap: $icon-gap;
+					font-weight: bold;
+					text-transform: capitalize;
+					margin-bottom: 0.4rem;
+
+					svg {
+						fill: $black;
+						width: $icon-dimensions - 0.4rem;
+						height: $icon-dimensions - 0.4rem;
+					}
+				}
+
+				li:not(:last-child) {
+					margin-bottom: 0.5rem;
+				}
+
+				a {
+					color: $grey;
+					font-size: 0.9rem;
+					padding: 0.4rem;
+					border-radius: $border-radius;
+					transition: $transition;
+
+					&:hover {
+						@include btn-effect($blue, rgba($blue, 0.1), null, null);
+						text-decoration: underline;
+					}
+				}
+			}
+
+			&__hashtag-info {
+				padding: 0.8rem;
+				text-align: center;
+				font-weight: bold;
+				color: $grey;
+			}
+		}
+	}
+}

@@ -1,0 +1,329 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+@use "variables" as *;
+@use "mixins" as *;
+
+%absolute-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+%bordered-box {
+	border: 0.07rem solid rgba($grey, 0.25) {
+		radius: $border-radius;
+	}
+}
+
+%icon-btn {
+	display: flex;
+	align-items: center;
+	padding: $icon-padding;
+	transition: $transition;
+	border-radius: $border-radius;
+
+	svg {
+		width: $icon-dimensions;
+		height: $icon-dimensions;
+	}
+
+	&:hover {
+		@include btn-effect(null, rgba($blue, 0.1), $blue, null);
+	}
+}
+
+%bordered-btn {
+	color: $blue;
+	border: 0.08rem solid $blue !important;
+	border-radius: $border-radius !important;
+
+	&:not(:disabled):hover {
+		@include btn-effect($white, rgba($blue, 1), null, true);
+	}
+}
+
+%blue-btn {
+	padding: 0.5rem 1rem;
+	text-transform: capitalize;
+	font-size: 0.9rem;
+	color: $white;
+	background: $blue;
+	transition: $transition;
+	border-radius: $border-radius;
+
+	&:not(:disabled):hover {
+		box-shadow: 0 0 1rem 100rem rgba($black, 0.2) inset;
+	}
+}
+
+%input-outline {
+	@extend %bordered-box;
+	outline: 0.08rem solid transparent;
+	transition: $transition;
+
+	&:hover {
+		border-color: $grey;
+	}
+
+	&:focus {
+		border-color: $blue;
+		outline-color: $blue;
+	}
+}
+
+%hashtag {
+	@extend %bordered-box;
+	color: $black;
+	transition: $transition;
+	padding: 0.25rem;
+	font-size: 0.9rem;
+
+	span {
+		color: $grey;
+	}
+}
+
+%editor {
+	> textarea {
+		@extend %input-outline;
+		resize: none;
+		padding: 0.7rem;
+		width: 100%;
+
+		&::placeholder {
+			color: $grey;
+		}
+	}
+
+	> div {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	button {
+		@extend %blue-btn;
+		margin-top: 0.5rem;
+
+		&:disabled {
+			background-color: $grey;
+			color: $white;
+		}
+	}
+}
+
+%modify-buttons {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+
+	&:first-of-type {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	svg {
+		transition: $transition;
+		border-radius: $border-radius;
+		padding: 0.2rem;
+		width: $icon-dimensions - 0.1rem;
+		height: $icon-dimensions - 0.1rem;
+		fill: $grey;
+
+		&:hover {
+			background-color: rgba($grey, 0.1);
+		}
+	}
+}
+
+%post-comment {
+	.comment:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+
+	.comment {
+		@extend %bordered-box;
+		padding: 1.3rem;
+		background: $white;
+
+		&__editor {
+			@extend %editor;
+			display: none;
+		}
+
+		&__header {
+			position: relative;
+			font-size: 0.8rem;
+			margin-bottom: 1rem;
+		}
+
+		&__tools {
+			@extend %modify-buttons;
+		}
+
+		&__data {
+			color: $grey;
+		}
+
+		&__user,
+		&__post {
+			display: block;
+			width: fit-content;
+			margin-bottom: 0.5rem;
+			transition: $transition;
+			display: flex;
+			align-items: center;
+			gap: 0.15rem;
+			font: {
+				size: 1rem;
+				weight: bold;
+			}
+
+			&:hover {
+				color: $blue;
+				svg {
+					fill: $blue;
+				}
+			}
+
+			svg {
+				width: $icon-dimensions - 0.2rem;
+				height: $icon-dimensions - 0.2rem;
+				fill: $black;
+				transition: $transition
+			}
+		}
+
+		&__text {
+			white-space: pre-wrap;
+			word-break: break-word;
+		}
+
+		&--edit {
+			.comment__editor {
+				display: block;
+			}
+			.comment__view {
+				display: none;
+			}
+		}
+	}
+}
+
+%blog-post {
+	.post:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+
+	.post {
+		@extend %bordered-box;
+		background-color: $white;
+		padding: 1rem;
+
+		&__header {
+			font-size: 0.8rem;
+			margin-bottom: 0.8rem;
+			position: relative;
+		}
+
+		&__tools {
+			@extend %modify-buttons;
+		}
+
+		&__user {
+			width: fit-content;
+			color: $black;
+			transition: $transition;
+			display: block;
+			margin-bottom: 0.5rem;
+			font: {
+				size: 1rem;
+				weight: bold;
+			}
+
+			&:hover {
+				@include btn-effect($blue, null, null, null);
+			}
+		}
+
+		&__title {
+			display: block;
+			font-size: 1.6rem;
+			margin-bottom: 0.7rem;
+			white-space: pre-wrap;
+			word-break: break-word;
+
+			a {
+				transition: $transition;
+				width: fit-content;
+				color: $black;
+
+				&:hover {
+					@include btn-effect($blue, null, null, null);
+				}
+			}
+		}
+
+		&__data {
+			color: $grey;
+		}
+
+		&__hashtags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.2rem;
+
+			a {
+				@extend %hashtag;
+				border-color: transparent;
+
+				&:hover {
+					@include btn-effect($black, rgba($grey, 0.1), null, null);
+					border-color: rgba($grey, 0.3);
+				}
+			}
+		}
+
+		&__content {
+			margin-top: 1rem;
+			white-space: pre-wrap;
+			word-break: break-word;
+		}
+
+		&__footer {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+			margin-top: 1rem;
+		}
+
+		&__btn {
+			display: flex;
+			gap: $icon-gap * 2;
+			align-items: center;
+			border-radius: $border-radius;
+			transition: $transition;
+			padding: 0.4rem;
+			font-size: 0.8rem;
+
+			svg {
+				width: $icon-dimensions - 0.4rem;
+				height: $icon-dimensions - 0.4rem;
+				fill: $grey;
+			}
+
+			span {
+				text-transform: capitalize;
+				color: $grey;
+			}
+
+			&:hover {
+				@include btn-effect(null, rgba($grey, 0.1), null, null);
+			}
+		}
+	}
+}

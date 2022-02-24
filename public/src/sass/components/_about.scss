@@ -1,0 +1,56 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+
+.about {
+	background: $white;
+	font-weight: bold;
+	border-radius: $border-radius;
+	padding: 0.8rem;
+	display: grid;
+	gap: 1rem;
+
+	a {
+		display: inline;
+		color: $blue;
+	}
+
+	p:nth-child(2) {
+		font-weight: normal;
+		color: $grey;
+		font-size: 0.8rem;
+	}
+
+	&__links {
+		margin-top: 1rem;
+
+		a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 0.5rem;
+			transition: $transition;
+			color: $black;
+			text-transform: capitalize;
+			font: {
+				size: 0.9rem;
+				weight: bold;
+			}
+
+			svg {
+				transition: $transition;
+				fill: $black;
+				width: $icon-dimensions;
+				height: $icon-dimensions;
+			}
+
+			&:hover,
+			&:hover svg {
+				@include btn-effect($blue, null, $blue, null);
+			}
+		}
+	}
+}

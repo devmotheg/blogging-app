@@ -1,0 +1,35 @@
+//-!
+  @author Mohamed Muntasir
+  @link https://github.com/devmotheg
+
+.header-background
+  .container
+    header.header
+      .header__left
+        button.header__btn.header__btn--hamburger
+          svg: use(xlink:href="/img/icons.svg#icon-hamburger")
+        a.header__btn.header__btn--root(href="/") blogging app
+      .header__right
+        if user
+          a.header__btn.header__btn--create-post(href="/create-post") create post
+          button.header__btn.header__btn--user
+            svg: use(xlink:href="/img/icons.svg#icon-user")
+          .popup
+            .popup__group
+              a.popup__btn.popup__btn--user(href=`/${user.username}`) @#{user.username}
+            .popup__group
+              a.popup__btn(href="/settings/profile") settings
+            .popup__group
+              button.popup__btn.popup__btn--log-out log out
+        else
+          a.header__btn.header__btn--log-in(href="/log-in") log in
+          a.header__btn.header__btn--register(href="/register") register
+
+nav.hamburger
+  .hamburger__content
+    .hamburger__header
+      h1.hamburger__title blogging app
+      button.hamburger__btn.hamburger__btn--close
+        svg: use(xlink:href="/img/icons.svg#icon-cross")
+    .hamburger__body
+      include ../components/_about

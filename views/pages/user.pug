@@ -1,0 +1,35 @@
+//-!
+  @author Mohamed Muntasir
+  @link https://github.com/devmotheg
+
+extends ../index
+
+include ../helpers/_mixins
+
+mixin user-data(icon, data)
+  button(class=`user-page__data user-page__data--activity-btn user-page__data--${icon}` href=`${link}`)
+    svg: use(xlink:href=`/img/icons.svg#icon-${icon}`)
+    span=data
+
+block content
+  .container
+    .user-page
+      - const { username, postsQuantity, favoritesQuantity, bookmarksQuantity, commentsQuantity, createdAt } = searchedUser;
+      .user-page__overview
+        - if (user && user.username === username)
+          a(href="/settings/profile").user-page__btn.user-page__btn--edit-profile edit profile
+        strong.user-page__username=username
+        - const getDayANdMonthAndYear = date => date.toLocaleString("en-us", { day: "numeric", month: "short", year: "numeric" });
+        div.user-page__data.user-page__data--joined
+          svg: use(xlink:href=`/img/icons.svg#icon-cake`)
+          span Joined on #{getDayANdMonthAndYear(createdAt)}
+      .user-page__content
+        .user-page__stats
+          +user-data("post", `${postsQuantity} posts published`)
+          +user-data("favorite", `${favoritesQuantity} favorites given`)
+          +user-data("bookmark", `${bookmarksQuantity} bookmarks given`)
+          +user-data("comment", `${commentsQuantity} comments written`)
+        .user-page__activities
+          each post in posts
+            +blog-post(post)
+

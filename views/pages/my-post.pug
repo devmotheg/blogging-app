@@ -1,0 +1,51 @@
+//-!
+  @author Mohamed Muntasir
+  @link https://github.com/devmotheg
+
+extends ../index
+
+block content
+  .container
+    .create-post-page
+      .new
+        -
+          const postTitle = post ? post.title : "";
+          const tags = post ? post.tags : [];
+          const postContent = post ? post.content : "";
+          const btnModifier = post ? "update" : "publish"
+        .editor
+          div
+            textarea.editor__area.editor__area--title(placeholder="New post title here..." maxlength="96")=postTitle
+            ul.editor__tags
+              each tag in tags
+                li.editor__item.editor__item--hashtag
+                  button.editor__btn.editor__btn--modify
+                    span #
+                    | #{tag}
+                  button.editor__btn.editor__btn--delete
+                    svg: use(xlink:href="/img/icons.svg#icon-cross")
+              li.editor__item.editor__item--input
+                input(type="text" placeholder="Add up to 4 tags..." maxlength="18" spellcheck="false")
+          div
+            textarea.editor__area.editor__area--content(placeholder="Write your post content here..." maxlength="600")=postContent
+        button.new__btn(class=`new__btn--${btnModifier}`)=btnModifier
+
+      .guide
+        .guide__list.guide__list--title.guide__list--active
+          strong Writing a Great Post Title...
+          ul
+            li Think of your post title as an overview of the actual post in one short sentence.
+            li Your post can contain any character except new lines.
+            li Must range from 6 to 96 characters.
+        .guide__list.guide__list--tags
+          strong Tagging Guidelines...
+          ul
+            li Tags help people find your post; think of them as topics or categories.
+            li Tags can't consist of anything but letters, numbers, and underscores.
+            li Add up to four unique comma-seperated or space-seperated tags.
+            li Must range from 2 to 18 characters.
+        .guide__list.guide__list--content
+          strong Writing a Discriptive Content...
+          ul
+            li Make sure to write an actually useful post, so I don't delete it.
+            li Must range from 50 to 600 characters.

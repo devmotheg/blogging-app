@@ -1,0 +1,129 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+@use "../helpers/placeholders" as *;
+
+.create-post-page {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 1rem;
+
+	.new {
+		padding: 1rem;
+
+		.editor {
+			@extend %bordered-box;
+			background: $white;
+
+			> div {
+				padding: 2rem;
+			}
+
+			&__area {
+				resize: none;
+				width: 100%;
+
+				&::placeholder {
+					color: $grey;
+				}
+
+				&--title {
+					font: {
+						size: 1.6rem;
+						weight: bold;
+					}
+				}
+			}
+
+			&__tags {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			&__item {
+				&--hashtag {
+					@extend %hashtag;
+					display: flex;
+					align-items: center;
+					background: rgba($grey, 0.1);
+					gap: $icon-gap;
+
+					svg {
+						width: $icon-dimensions - 0.3rem;
+						height: $icon-dimensions - 0.3rem;
+						transition: $transition;
+					}
+				}
+
+				&--input {
+					padding: 0.41rem;
+					font-size: 0.9rem;
+				}
+			}
+
+			&__btn {
+				display: flex;
+
+				&--delete:hover {
+					fill: $red;
+				}
+			}
+		}
+
+		&__btn {
+			@extend %blue-btn;
+			margin-top: 0.5rem;
+
+			&:disabled {
+				background-color: $grey;
+				color: $white;
+			}
+		}
+	}
+
+	.guide {
+		width: $aside-width * 1.5;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 1.4rem;
+
+		&__list {
+			transition: $transition;
+			position: relative;
+			top: -1rem;
+			opacity: 0;
+			visibility: hidden;
+
+			strong {
+				font-weight: bold;
+				margin-bottom: 0.6rem;
+			}
+
+			ul {
+				padding-left: 1.5rem;
+
+				li:not(:last-child) {
+					margin-bottom: 0.3rem;
+				}
+
+				li {
+					color: $grey;
+					font-size: 0.9rem;
+					list-style: disc;
+				}
+			}
+
+			&--active {
+				top: 0;
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+}

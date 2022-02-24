@@ -1,0 +1,169 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+@use "../helpers/placeholders" as *;
+
+%flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+}
+
+.header-background {
+	box-shadow: 0 0.1rem 0.6rem rgba($soft-black, 0.15);
+	background: $white;
+}
+
+.header {
+	@extend %flex;
+	padding: 0.4rem 0;
+	margin-bottom: 1.6rem;
+
+	> * {
+		@extend %flex;
+	}
+
+	&__right {
+		position: relative;
+
+		.popup {
+			@extend %bordered-box;
+			position: absolute;
+			z-index: 1;
+			top: 110%;
+			right: 0;
+			background-color: $white;
+			padding: 0.5rem;
+			transition: $transition;
+			opacity: 0;
+			visibility: hidden;
+
+			&--open {
+				opacity: 1;
+				visibility: visible;
+			}
+
+			&__group:not(:last-child) {
+				@include line(null, null, bottom, 0.5rem);
+			}
+
+			&__btn:not(.popup__btn--user) {
+				text-transform: capitalize;
+			}
+
+			&__btn {
+				width: 100%;
+				text-align: left;
+				font-size: 0.9rem;
+				color: $grey;
+				transition: $transition;
+				border-radius: $border-radius;
+				padding: 0.6rem 5rem 0.6rem 0.6rem;
+
+				&:hover {
+					@include btn-effect($blue, rgba($blue, 0.1), null, null);
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+
+	&__btn {
+		text-transform: capitalize;
+		transition: $transition;
+		padding: 0.5rem;
+		border: 0.08rem solid transparent {
+			radius: $border-radius;
+		}
+		font-size: 0.8rem;
+
+		&--hamburger {
+			@extend %icon-btn;
+			@include respond-to(lg) {
+				& {
+					display: none;
+				}
+			}
+		}
+
+		&--root {
+			color: $soft-white;
+			background-color: $soft-black;
+			font-weight: bold;
+		}
+
+		&--log-in {
+			color: $grey;
+
+			&:hover {
+				@include btn-effect($blue, rgba($blue, 0.1), null, true);
+			}
+		}
+
+		&--register {
+			@extend %bordered-btn;
+		}
+
+		&--create-post {
+			@extend %bordered-btn;
+		}
+
+		&--user {
+			@extend %icon-btn;
+		}
+	}
+}
+
+.hamburger {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	background: rgba($black, 0.45);
+	transition: $transition;
+	opacity: 0;
+	visibility: hidden;
+
+	&--open {
+		opacity: 1;
+		visibility: visible;
+
+		.hamburger__content {
+			transform: translateX(0);
+		}
+	}
+
+	&__content {
+		width: $aside-width + 1.2rem;
+		height: 100%;
+		position: fixed;
+		z-index: 1;
+		background: $soft-white;
+		padding: 0.6rem;
+		transition: $transition;
+		transform: translateX(-100%);
+	}
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 0.6rem;
+	}
+
+	&__title {
+		text-transform: capitalize;
+	}
+
+	&__btn {
+		&--close {
+			@extend %icon-btn;
+		}
+	}
+}

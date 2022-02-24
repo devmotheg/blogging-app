@@ -1,0 +1,39 @@
+//-!
+  @author Mohamed Muntasir
+  @link https://github.com/devmotheg
+
+extends ../index
+
+include ../helpers/_mixins
+
+block content
+  .container
+    .overview-page
+      - if (page === "tag")
+        header.overview-page__header
+          strong.overview-page__hashtag
+            span #
+            | #{hashtag.tag}
+      .overview-page__content
+        aside.aside-left
+          include ../components/_about
+
+        main.main
+          .main__btns
+            button.main__btn.main__btn--latest.main__btn--active latest
+            button.main__btn.main__btn--top top
+          .main__posts
+            each post in posts
+              +blog-post(post)
+
+        aside.aside-right
+          - if (page === "root")
+            .aside-right__hashtags
+              strong
+                svg: use(xlink:href="/img/icons.svg#icon-hashtag")
+                |  popular hashtags
+              ul
+                each hashtag in hashtags
+                  li: a(href=`/tags/${hashtag.tag}`) ##{hashtag.tag}
+          - if (page === "tag")
+            p.aside-right__hashtag-info #{hashtag.postsQuantity} posts published

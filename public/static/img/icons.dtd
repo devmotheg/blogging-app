@@ -1,0 +1,6 @@
+<!ELEMENT svg (svg*,title?,path*)>
+<!ATTLIST svg viewBox CDATA #IMPLIED>
+<!ATTLIST svg id ID #IMPLIED>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT path EMPTY>
+<!ATTLIST path d CDATA #REQUIRED>

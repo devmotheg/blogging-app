@@ -1,0 +1,109 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+@use "../helpers/placeholders" as *;
+
+.form {
+	@extend %bordered-box;
+	background: $white;
+	padding: 2rem;
+	margin: auto;
+
+	&--log-in,
+	&--register {
+		width: fit-content;
+	}
+
+	&--settings {
+		width: 100%;
+	}
+
+	&__header {
+		margin-bottom: 1.6rem;
+	}
+
+	&__title {
+		text-align: center;
+		margin-bottom: 0.4rem;
+		font: {
+			weight: bold;
+			size: 1.6rem;
+		}
+	}
+
+	strong.form__title {
+		text-transform: capitalize;
+	}
+
+	&__about {
+		font-size: 0.9rem;
+		color: $grey;
+		text-align: center;
+
+		a {
+			display: inline;
+			color: $blue;
+		}
+	}
+
+	&__cta {
+		width: fit-content;
+		margin: 1.6rem auto;
+		position: relative;
+
+		span {
+			padding: 0.4rem;
+			font-size: 0.8rem;
+			color: $grey;
+			text-align: center;
+			background: $white;
+			position: relative;
+			z-index: 1;
+		}
+
+		&::after {
+			@include line(true, 140%, null, null);
+		}
+	}
+
+	&__group:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+
+	&__label {
+		display: block;
+		text-transform: capitalize;
+		margin-bottom: 0.4rem;
+		font: {
+			size: 0.9rem;
+			weight: bold;
+		}
+		 
+		span {
+			text-transform: initial;
+			font-size: 0.8rem;
+			color: $grey;
+			font-weight: normal;
+		}
+	}
+
+	&__input {
+		@extend %input-outline;
+		font-size: 0.9rem;
+		padding: 0.45rem;
+		width: 100%;
+	}
+
+	&__btn {
+		@extend %blue-btn;
+		margin: auto;
+
+		&:disabled {
+			background-color: $grey;
+			color: $white;
+		}
+	}
+}

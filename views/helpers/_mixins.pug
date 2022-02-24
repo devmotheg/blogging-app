@@ -1,0 +1,51 @@
+//-!
+  @author Mohamed Muntasir
+  @link https://github.com/devmotheg
+
+mixin blog-post-h-a-b(post, content)
+  .post__header
+    - if (user && user.username === post.userId.username)
+      .post__tools
+        a.post__modify(href=`/update-post/${post._n}`)
+          svg: use(xlink:href="/img/icons.svg#icon-edit-2")
+        if (page === "user")
+          a(href=`/${post.userId.username}/${post._n}`)
+            svg: use(xlink:href="/img/icons.svg#icon-trash")
+        else
+          button.post__delete
+            svg: use(xlink:href="/img/icons.svg#icon-trash")
+    a.post__user(href=`/${post.userId.username}`)=post.userId.username
+    div
+      - const getMonthAndYear = date => date.toLocaleString("en-us", { month: "short", year: "numeric" });
+      span.post__data Published on #{getMonthAndYear(post.createdAt)}
+      if post.lastEditedAt
+        span •
+        span.post__data Modified on #{getMonthAndYear(post.lastEditedAt)}
+  .post__body
+    strong.post__title
+      if content
+        | #{post.title}
+      else
+        a(href=`/${post.userId.username}/${post._n}`)=post.title
+    .post__hashtags
+      each tag in post.tags
+        a(href=`/tags/${tag}`)
+          span #
+          | #{tag}
+    if content
+      .post__content
+        p=post.content
+
+mixin blog-post-btn(link, icon, number)
+  a(href=`${link}` class=`post__btn post__btn--${icon}`)
+    svg: use(xlink:href=`/img/icons.svg#icon-${icon}`)
+    span=`${number} ${icon}s`
+
+mixin blog-post(post)
+  .post(data-post-id=`${post._n}`)
+    +blog-post-h-a-b(post, null)
+    .post__footer
+      - const { favoritesQuantity, bookmarksQuantity, commentsQuantity } = post;
+      +blog-post-btn(`/${post.userId.username}/${post._n}`, "favorite", favoritesQuantity)
+      +blog-post-btn(`/${post.userId.username}/${post._n}`, "bookmark", bookmarksQuantity)
+      +blog-post-btn(`/${post.userId.username}/${post._n}`, "comment", commentsQuantity)

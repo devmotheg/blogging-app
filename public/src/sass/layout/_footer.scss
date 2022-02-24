@@ -1,0 +1,28 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+
+.footer-background {
+	padding: 2rem;
+	margin-top: 1.6rem;
+}
+
+.footer {
+	a {
+		width: fit-content;
+		margin: auto;
+		text-align: center;
+		color: $black;
+		font: {
+			weight: bold;
+			size: 0.9rem;
+		}
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

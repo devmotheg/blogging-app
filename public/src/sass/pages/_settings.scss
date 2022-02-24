@@ -1,0 +1,68 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+@use "../helpers/variables" as *;
+
+.settings-page {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: auto 1fr;
+	padding: 0 4rem;
+
+	&__header {
+		grid-column: 1 / 3;
+		margin-bottom: 1rem;
+		font: {
+			size: 1.6rem;
+			weight: bold;
+		}
+
+		a {
+			color: $blue;
+			display: inline;
+		}
+	}
+
+	&__aside {
+		li:not(:last-child) {
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		gap: $icon-gap * 2;
+		padding: 0.4rem 2.1rem 0.4rem 0.7rem;
+		border-radius: $border-radius;
+		transition: $transition;
+		text-transform: capitalize;
+		color: $grey;
+
+		svg {
+			fill: $grey;
+			width: $icon-dimensions - 0.25rem;
+			height: $icon-dimensions - 0.25rem;
+		}
+
+		&:hover {
+			background: rgba($blue, 0.1);
+			color: $blue;
+		}
+
+		&:hover svg {
+			fill: $blue;
+		}
+
+		&--active {
+			background: $white;
+			color: $blue;
+			font-weight: bold;
+
+			svg {
+				fill: $blue;
+			}
+		}
+	}
+}

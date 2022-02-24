@@ -1,0 +1,84 @@
+//-!
+  @author Mohamed Muntasir
+  @link https://github.com/devmotheg
+
+extends ../index
+
+include ../helpers/_mixins
+
+mixin icon-button(icon, clicked, number)
+  button(class=`aside-left__btn aside-left__btn--${icon} ${clicked ? "aside-left__btn--clicked" : ""}`)
+    div
+      svg.icon: use(xlink:href=`/img/icons.svg#icon-${icon}`)
+      svg.icon.icon--filled: use(xlink:href=`/img/icons.svg#icon-${icon}-filled`)
+    span=number
+
+block content
+  .container
+    .post-page
+      - const getMonthAndYear = date => date.toLocaleString("en-us", { month: "short", year: "numeric" });
+
+      .modal
+        .modal__content
+          .modal__header
+            strong Join to continue
+            button.modal__close
+              svg: use(xlink:href="/img/icons.svg#icon-cross")
+          .modal__body
+            p We're a place where people can share their blogs, ask questions, learn from others, help others and grow.
+            .modal__btns
+              a(href="/log-in").modal__btn.modal__btn--log-in log in
+              a(href="/register").modal__btn.modal__btn--register register
+      aside.aside-left
+        .aside-left__btns
+          +icon-button("favorite", favorite, post.favoritesQuantity)
+          +icon-button("bookmark", bookmark, post.bookmarksQuantity)
+
+      main.main
+        .post(data-post-id=`${post._n}`)
+          +blog-post-h-a-b(post, true)
+          .discussion
+            strong.discussion__title discussion
+              |  (
+              span #{post.commentsQuantity}
+              | )
+            .discussion__content
+              if user
+                .new-comment
+                  textarea.new-comment__area(placeholder="Add to the discussion..." maxlength="280")
+                  button.new-comment__submit submit
+              .comments
+                each comment in post.comments
+                  .comment(data-comment-id=`${comment._n}`)
+                    if (user && user.username === comment.userId.username)
+                      .comment__editor
+                        textarea.comment__area(placeholder="Edit your comment..." maxlength="280")
+                        div
+                          button.comment__update update
+                          button.comment__dismiss dismiss
+                    .comment__view
+                      .comment__header
+                        if (user && user.username === comment.userId.username)
+                          .comment__tools
+                            button.comment__modify
+                              svg: use(xlink:href="/img/icons.svg#icon-edit-2")
+                            button.comment__delete
+                              svg: use(xlink:href="/img/icons.svg#icon-trash")
+                        a.comment__user(href=`/${comment.userId.username}`)=comment.userId.username
+                          if (post.userId.username === comment.userId.username)
+                            svg: use(xlink:href="/img/icons.svg#icon-author")
+                        div
+                          span.comment__data Published on #{getMonthAndYear(comment.createdAt)}
+                          if comment.lastEditedAt
+                            span •
+                            span.comment__data Modified on #{getMonthAndYear(comment.lastEditedAt)}
+                      p.comment__text=comment.text
+
+      aside.aside-right
+        .user-card
+          .user-card__header
+            a(href=`/${post.userId.username}`).user-card__btn=post.userId.username
+          .user-card__body
+            .user-card__data
+              span joined
+              span=getMonthAndYear(post.userId.createdAt)

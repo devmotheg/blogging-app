@@ -1,0 +1,18 @@
+//-!
+  @author Mohamed Muntasir
+  @link https://github.com/devmotheg
+
+extends ../settings
+
+block body
+  form.form.form--settings.form--profile(novalidate spellcheck="false")
+    header.form__header
+      strong.form__title user
+    .form__group
+      label.form__label(for="username")
+        | username
+        br
+        span Can only contain letters, numbers, and underscores and range from 2 to 16 characters
+      input#username.form__input(type="text" name="username" value=`${user.username}`)
+    .form__group
+      button.form__btn save profile information

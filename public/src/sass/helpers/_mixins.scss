@@ -1,0 +1,41 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+@use "variables" as *;
+
+@mixin respond-to($breakpoint) {
+	@each $media-breakpoint, $width in $media-breakpoints {
+		@if ($media-breakpoint == $breakpoint) {
+			@media (min-width: $width) {
+				@content;
+			}
+		}
+	}
+}
+
+@mixin btn-effect($color, $bg-color, $fill, $underline) {
+	color: if($color, $color, transparent);
+	background-color: if($bg-color, $bg-color, transparent);
+	fill: if($fill, $fill, transparent);
+	@if ($underline) {
+		text-decoration: underline;
+	}
+}
+
+@mixin line($pseudo, $width, $dir, $gap) {
+	@if $pseudo {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: $width;
+		height: 0.1rem;
+		background: rgba($grey, 0.4);
+	} @else {
+		padding-#{$dir}: $gap;
+		border-#{$dir}: 0.05rem solid rgba($grey, 0.4);
+		margin-#{$dir}: $gap;
+	}
+}

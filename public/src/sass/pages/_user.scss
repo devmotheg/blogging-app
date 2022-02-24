@@ -1,0 +1,90 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+@use "../helpers/placeholders" as *;
+
+.user-page {
+	&__overview,
+	&__stats {
+		@extend %bordered-box;
+		background: $white;
+		padding: 2rem;
+	}
+
+	&__content {
+		margin-top: 0.6rem;
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+	}
+
+	&__stats {
+		padding: 1rem;
+		width: fit-content;
+	}
+
+	&__activities {
+		@extend %blog-post;
+		@extend %post-comment;
+		flex: 1;
+	}
+
+	&__btn {
+		@extend %blue-btn;
+		margin-left: auto;
+		width: fit-content;
+	}
+
+	&__username {
+		font-size: 2rem;
+		display: block;
+		text-align: center;
+		margin: 1rem 0;
+	}
+
+	&__data:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+
+	&__data {
+		display: flex;
+		align-items: center;
+		gap: $icon-gap * 2;
+		width: fit-content;
+		font-size: 0.8rem;
+		color: $grey;
+
+		svg {
+			width: $icon-dimensions;
+			height: $icon-dimensions;
+			fill: $grey;
+		}
+
+		&--joined {
+			margin: auto;
+			font-weight: bold;
+
+			svg {
+				width: $icon-dimensions - 0.2rem;
+				height: $icon-dimensions - 0.2rem;
+			}
+		}
+
+		&--activity-btn {
+			font-size: 1rem;
+			width: 100%;
+			padding: 0.4rem {
+				right: 2rem;
+			}
+			transition: $transition;
+			border-radius: $border-radius;
+
+			&:hover {
+				@include btn-effect($grey, rgba($grey, 0.1), null, null);
+			}
+		}
+	}
+}

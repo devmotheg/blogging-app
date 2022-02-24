@@ -1,0 +1,70 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+@use "../helpers/variables" as *;
+
+* {
+	font: {
+		size: inherit;
+		family: inherit;
+	}
+	color: inherit;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html:root {
+	font: {
+		size: 18px;
+		family: $font-sans;
+	}
+}
+
+body {
+	background-color: $soft-white;
+	color: $black;
+	min-width: 700px;
+}
+
+a,
+button,
+strong {
+	text-decoration: none;
+	display: block;
+}
+
+button {
+	cursor: pointer;
+	border: none;
+	outline: none;
+	background: transparent;
+
+	&:disabled {
+		cursor: not-allowed;
+	}
+}
+
+ul {
+	list-style: none;
+}
+
+input,
+textarea {
+	border: none;
+	outline: none;
+}
+
+textarea {
+	overflow: hidden;
+}
+
+svg {
+	display: flex;
+}
+
+::selection {
+	color: $white;
+	background: $blue;
+}

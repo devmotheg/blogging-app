@@ -1,0 +1,86 @@
+//!
+// @author Mohamed Muntasir
+// @link https://github.com/devmotheg
+
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+@use "../helpers/placeholders" as *;
+
+.modal {
+	@extend %absolute-center;
+	width: 100%;
+	height: 100%;
+  z-index: 4;
+	background: rgba($black, 0.45);
+	transition: $transition;
+	opacity: 0;
+	visibility: hidden;
+
+  &--display {
+    opacity: 1;
+    visibility: visible;
+  }
+
+	&__content {
+		@extend %absolute-center;
+    width: 23rem;
+    background: $white;
+    border-radius: $border-radius;
+	}
+
+	&__header {
+    @include line(false, null, bottom, 0.5rem);
+    font-size: 1.1rem;
+    padding: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    svg {
+      width: $icon-dimensions;
+      height: $icon-dimensions;
+      transition: $transition;
+      fill: $black;
+
+      &:hover {
+        fill: $red;
+      }
+    }
+	}
+
+  &__body {
+    padding: 1.5rem;
+    color: $grey;
+    display: grid;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  &__btns {
+    display: grid;
+    gap: 0.5rem;
+    width: 70%;
+    margin: auto;
+  }
+
+  &__btn {
+		text-transform: capitalize;
+		transition: $transition;
+		padding: 0.5rem;
+		border: 0.08rem solid transparent {
+			radius: $border-radius;
+		}
+
+		&--log-in {
+			color: $grey;
+
+			&:hover {
+				@include btn-effect($blue, rgba($blue, 0.1), null, true);
+			}
+		}
+
+		&--register {
+			@extend %bordered-btn;
+		}
+  }
+}

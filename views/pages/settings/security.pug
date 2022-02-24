@@ -1,0 +1,24 @@
+//-!
+  @author Mohamed Muntasir
+  @link https://github.com/devmotheg
+
+extends ../settings
+
+block body
+  form.form.form--settings.form--security(novalidate spellcheck="false")
+    header.form__header
+      strong.form__title password
+    .form__group
+      label.form__label(for="current-password")
+        | current password
+        br
+        span Can at least have 8 characters
+      input#current-password.form__input(type="password" name="currentPassword")
+    .form__group
+      label.form__label(for="new-password")
+        | new password
+        br
+        span Can at least have 8 characters
+      input#new-password.form__input(type="password" name="newPassword")
+    .form__group
+      button.form__btn set new password
