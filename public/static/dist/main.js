@@ -2302,7 +2302,7 @@ var APIRequest = /** @class */ (function () {
                         return [4 /*yield*/, axios__WEBPACK_IMPORTED_MODULE_0___default()({
                                 url: url,
                                 method: method,
-                                baseURL: "http://127.0.0.1:3000/api/v1/",
+                                baseURL: "/api/v1/",
                                 data: this.data,
                             })];
                     case 1:
