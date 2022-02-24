@@ -19,6 +19,8 @@ body {
   background-color: whitesmoke;
   color: black;
   min-width: 700px;
+  min-height: 100vh;
+  position: relative;
 }
 
 a,
