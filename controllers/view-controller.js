@@ -88,9 +88,10 @@ exports.renderSecuritySettings = catchAsync(async (req, res, next) => {
 
 exports.renderUser = catchAsync(async (req, res, next) => {
 	const searchedUser = await User.findOne({ username: req.params.username });
-	const posts = await Post.find({ userId: searchedUser._id });
 
 	if (!searchedUser) return notFoundError("user", next);
+
+	const posts = await Post.find({ userId: searchedUser._id });
 
 	res.status(200).render("pages/user", {
 		title: "User",
