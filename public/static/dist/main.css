@@ -284,6 +284,11 @@ svg {
   fill: black;
   transition: 0.3s all ease;
 }
+.post-page .main .discussion .comment__user + div, .user-page__activities .comment__user + div, .post-page .main .discussion .comment__post + div, .user-page__activities .comment__post + div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 .post-page .main .discussion .comment__text, .user-page__activities .comment__text {
   white-space: pre-wrap;
   word-break: break-word;
@@ -322,6 +327,11 @@ svg {
   color: #3b49df;
   background-color: transparent;
   fill: transparent;
+}
+.post-page .main .post__user + div, .user-page__activities .post__user + div, .overview-page__content .main .post__user + div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 .post-page .main .post__title, .user-page__activities .post__title, .overview-page__content .main .post__title {
   display: block;

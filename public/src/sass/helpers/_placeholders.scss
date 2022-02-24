@@ -196,6 +196,12 @@
 				fill: $black;
 				transition: $transition
 			}
+
+			& + div {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
 		}
 
 		&__text {
@@ -247,6 +253,12 @@
 
 			&:hover {
 				@include btn-effect($blue, null, null, null);
+			}
+
+			& + div {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
 			}
 		}
 
