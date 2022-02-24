@@ -19,10 +19,7 @@ const logUserIn = async (req, res, statusCode, payload) => {
 			Date.now() + process.env.JWT_COOKIE_EXPIRATION * 24 * 60 * 60 * 1000
 		),
 		httpOnly: true,
-		secure:
-			req.secure ||
-			req.headers("x-forwarded-proto") ||
-			process.env.NODE_ENV === "production",
+		secure: req.secure || process.env.NODE_ENV === "production",
 	};
 
 	res.cookie("jwt", token, cookieOptions);
