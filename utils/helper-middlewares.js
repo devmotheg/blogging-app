@@ -18,6 +18,8 @@ exports.passQueryFilter = (req, res, next) => {
 };
 
 exports.setUserId = catchAsync(async (req, res, next) => {
+  if (!req.params.username) return next();
+
   const user = await User.findOne({ username: req.queryFilter.username });
 
   if (!user) return notFoundError("user", next);
