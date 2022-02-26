@@ -31,7 +31,11 @@ router
 
 router
   .route("/")
-  .get(helperMiddlewares.passQueryFilter, postController.readAllPosts)
+  .get(
+    helperMiddlewares.passQueryFilter,
+    helperMiddlewares.setUserId,
+    postController.readAllPosts
+  )
   .post(
     authController.fireWall({ protect: true }),
     authController.restrictTo("admin"),

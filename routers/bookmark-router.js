@@ -23,7 +23,11 @@ router
 
 router
   .route("/")
-  .get(helperMiddlewares.passQueryFilter, bookmarkController.readAllBookmarks)
+  .get(
+    helperMiddlewares.passQueryFilter,
+    helperMiddlewares.setUserId,
+    bookmarkController.readAllBookmarks
+  )
   .post(
     authController.fireWall({ protect: true }),
     authController.restrictTo("admin"),
