@@ -11,7 +11,7 @@ const favoriteRouter = require("../routers/favorite-router"),
   postController = require("../controllers/post-controller"),
   helperMiddlewares = require("../utils/helper-middlewares");
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 router.use("/:postId/favorites", favoriteRouter);
 router.use("/:postId/bookmarks", bookmarkRouter);
