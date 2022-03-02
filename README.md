@@ -1,6 +1,6 @@
 # Blogging App
 
-Almost a dev.to mockup :P
+Almost a DEV PWA mockup :P
 
 ## Table of contents
 
