@@ -9,7 +9,7 @@
     "start-prod": "set NODE_ENV=production&& nodemon server.js --ignore public/*"
   },
   "author": "Mohamed Muntasir",
-  "license": "ISC",
+  "license": "MIT",
   "engines": {
     "node": "^16"
   },

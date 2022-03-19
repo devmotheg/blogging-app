@@ -7,7 +7,7 @@
     "build-dev": "webpack --mode development"
   },
   "author": "Mohamed Muntasir",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^10.4.2",
     "css-loader": "^6.6.0",
