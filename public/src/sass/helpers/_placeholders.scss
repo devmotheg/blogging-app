@@ -1,6 +1,6 @@
-//!
-// @author Mohamed Muntasir
-// @link https://github.com/devmotheg
+///!
+/// @author Mohamed Muntasir
+/// @link https://github.com/devmotheg
 
 @use "variables" as *;
 @use "mixins" as *;
@@ -194,7 +194,7 @@
 				width: $icon-dimensions - 0.2rem;
 				height: $icon-dimensions - 0.2rem;
 				fill: $black;
-				transition: $transition
+				transition: $transition;
 			}
 
 			& + div {

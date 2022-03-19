@@ -1,6 +1,6 @@
-//!
-// @author Mohamed Muntasir
-// @link https://github.com/devmotheg
+///!
+/// @author Mohamed Muntasir
+/// @link https://github.com/devmotheg
 
 @use "../helpers/variables" as *;
 @use "../helpers/mixins" as *;
@@ -81,7 +81,7 @@
 			size: 0.9rem;
 			weight: bold;
 		}
-		 
+
 		span {
 			text-transform: initial;
 			font-size: 0.8rem;
