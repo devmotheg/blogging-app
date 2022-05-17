@@ -46,7 +46,7 @@ const initLeftAside = (state: string, postId: string) => {
 		const btn = new Button(`.aside-left__btn--${modifier}`);
 
 		let listener = Modal.joinCTA;
-		if (state !== "out") {
+		if (state !== "::__OUT") {
 			listener = async () => {
 				btn.$dom!.disabled = true;
 				await (asideClicked(btn)

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-dev": "webpack --mode development"
+    "build-dev": "webpack --mode development --watch",
+    "build-prod": "webpack --mode production"
   },
   "author": "Mohamed Muntasir",
   "license": "MIT",

@@ -33,7 +33,7 @@ export default class Alert {
 		const $alert = elt("div", { class: "alert" }, [$alertBody]);
 
 		document.body.insertAdjacentElement("afterbegin", $alert);
-		$alert.style.bottom = `${$alertBody.clientHeight + 20}px`;
+		$alert.style.bottom = `${$alertBody.offsetHeight + 40}px`;
 
 		setTimeout(() => $alert?.classList.add("alert--display"), 300);
 		$btn?.addEventListener("click", () => {
